@@ -22,4 +22,9 @@
           DestinationFolder="$(TargetDir)$(BaseBlazorRuntimeOutputPath)"/>
   </Target>
 
+  <Target Name="Copy JS" AfterTargets="Publish">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\scripts\blazor.cordova.js"
+          DestinationFolder="$(PublishDir)$(AssemblyName)\$(BaseBlazorRuntimeOutputPath)"/>
+  </Target>
+
 </Project>
