@@ -1,0 +1,25 @@
+﻿<Project>
+
+  <Target Name="ReplacePaths" AfterTargets="Build">
+    <ReadLinesFromFile
+      File="$(TargetDir)$(BaseBlazorRuntimeOutputPath)blazor.webassembly.js" >
+      <Output
+        TaskParameter="Lines"
+        ItemName="FileContent"/>
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <ModifiedContent>@(FileContent->Replace("_framework", "framework")->Replace("_bin", "bin"))</ModifiedContent>
+    </PropertyGroup>
+    <WriteLinesToFile
+      File="$(TargetDir)$(BaseBlazorRuntimeOutputPath)blazor.webassembly.js"
+      Lines="$(ModifiedContent)"
+      Overwrite="true"
+      Encoding="Unicode"/>
+  </Target>
+
+  <Target Name="Copy JS" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\scripts\blazor.cordova.js"
+          DestinationFolder="$(TargetDir)$(BaseBlazorRuntimeOutputPath)"/>
+  </Target>
+
+</Project>
