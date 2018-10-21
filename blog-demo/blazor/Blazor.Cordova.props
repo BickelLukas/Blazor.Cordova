@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup Label="Blazor build outputs">
+    <BaseBlazorDistPath>dist/</BaseBlazorDistPath>
+    <BaseBlazorPackageContentOutputPath>$(BaseBlazorDistPath)content/</BaseBlazorPackageContentOutputPath>
+    <BaseBlazorRuntimeOutputPath>$(BaseBlazorDistPath)framework/</BaseBlazorRuntimeOutputPath>
+    <BaseBlazorRuntimeBinOutputPath>$(BaseBlazorRuntimeOutputPath)bin/</BaseBlazorRuntimeBinOutputPath>
+    <BaseBlazorRuntimeAsmjsOutputPath>$(BaseBlazorRuntimeOutputPath)asmjs/</BaseBlazorRuntimeAsmjsOutputPath>
+    <BaseBlazorRuntimeWasmOutputPath>$(BaseBlazorRuntimeOutputPath)wasm/</BaseBlazorRuntimeWasmOutputPath>
+    <BaseBlazorJsOutputPath>$(BaseBlazorRuntimeOutputPath)</BaseBlazorJsOutputPath>
+    <BaseBlazorIntermediateOutputPath>blazor/</BaseBlazorIntermediateOutputPath>
+    <BlazorWebRootName>wwwroot/</BlazorWebRootName>
+    <BlazorBootJsonOutputPath>$(BaseBlazorRuntimeOutputPath)$(BlazorBootJsonName)</BlazorBootJsonOutputPath>
+  </PropertyGroup>
+</Project>

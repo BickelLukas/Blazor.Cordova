@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>blazor</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <app>Loading...</app>
+
+    <script>
+        window.fetch = (url, info) => {
+            return new Promise(function (resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open(info.method || "GET", url);
+                if (url.endsWith(".wasm"))
+                    xhr.responseType = "arraybuffer";
+                
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300) {
+                        resolve({
+                            json: () => JSON.parse(xhr.response),
+                            ok: true,
+                            arrayBuffer: () => xhr.response
+                        });
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                xhr.send();
+            })
+        };
+        WebAssembly.instantiateStreaming = undefined;
+    </script>
+    <script src="framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
